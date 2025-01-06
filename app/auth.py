@@ -38,7 +38,8 @@ def decode_access_token(token: str) -> dict:
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> models.User:
+def get_current_user(token: str = Depends(oauth2_scheme),
+                     db: Session = Depends(get_db)) -> models.User:
     credentials_exception = HTTPException(
         status_code=401,
         detail="Could not validate credentials",
